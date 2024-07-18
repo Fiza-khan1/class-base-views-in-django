@@ -6,12 +6,19 @@
     <title>Document</title>
 </head>
 <body>
-    {{student.id}}
+    <h2>Student detail with  {{student.id}} is given below</h2>
+   
 
-    {{student.name}}
+   name: {{student.name}}
     <br>
-    {{student.age}}
+   Age: {{student.age}}
     <br>
-    {{student.course}}
+  Course  {{student.course}}
+
+  <h3>View Details of others</h3>
+  {%for student in new%}
+
+  <a href="{%url 'displaymodel' student.id%}">{{student.name}}</a><br>
+  {%endfor%}
 </body>
 </html>

@@ -16,6 +16,19 @@ urlpatterns = [
     path('<int:pk>/',views.TemplateView.as_view(template_name='home.html'),name='mindex'),
     path('display/',views.display.as_view(),name='display'),
     path('displaymodel/<int:pk>/', views.StudentDetailView.as_view(), name='displaymodel'),
+    path('view/', views.ViewContactForm.as_view(), name='contact'),
+    path('createform/',views.studentCreateForm.as_view(),name='create'),
+    path('end/<int:id>/',views.TemplateEndView.as_view(),name='end'),
+    path('update/<int:pk>/',views.studentupdateview.as_view(),name='update'),
+    path('update_success/',views.update.as_view(),name='update_success'),
+    path('delete/<int:pk>',views.studentdeleteview.as_view(),name='delete'),
+    path('msg/',views.msgtemplate.as_view(),name='msg'),
+
+    
+
+
+
+
 
     
 ]

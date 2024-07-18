@@ -8,7 +8,10 @@ from django.views.generic.base import TemplateView,RedirectView
 from django.views.generic.list import ListView
 from .models import Student
 from django.views.generic.detail import DetailView
-
+from django.views.generic.edit import FormView,CreateView,UpdateView,DeleteView
+from .forms import contactform,StudentForm
+from django.urls import reverse_lazy
+from django import forms
 def home(request):
     return HttpResponse('kbkjdvldrnv')
 
@@ -64,7 +67,67 @@ class display(ListView):
    
 class StudentDetailView(DetailView):
     model=Student
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context= super().get_context_data(**kwargs)
+        context['new']=Student.objects.all()
+        return context
     
+    
+
+class ViewContactForm(FormView):
+    template_name='classapp/formview.html'
+    form_class=contactform
+    
+    def form_valid(self, form: Any) -> HttpResponse:
+        print(form)
+        return super().form_valid(form)
+    
+# class studentCreateForm(CreateView):
+#     model=Student
+#     fields=['name','age','course']
+
+#     def get_form(self):
+#         form= super().get_form()
+#         form.fields['name'].widget.attrs.update({'class': 'custom-class', 'placeholder': 'Enter name'})
+#         form.fields['age'].widget.attrs.update({'class': 'custom-class', 'placeholder': 'Enter age'})
+#         form.fields['course'].widget.attrs.update({'class': 'custom-class', 'placeholder': 'Enter course'})
+#         return form
+    # success_url = reverse_lazy('end')
+
+class studentCreateForm(CreateView):
+    form_class=StudentForm
+    template_name='classapp/student_form.html'
+
+    
+class studentupdateview(UpdateView):
+    model = Student
+    fields = ['name', 'age', 'course']
+    success_url = reverse_lazy('update_success') 
+
+class studentdeleteview(DeleteView):
+    model=Student
+    success_url='/msg/'
+class TemplateEndView(TemplateView):
+    template_name = 'msg.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['id'] = self.kwargs['id']
+        context['student'] = Student.objects.get(id=self.kwargs['id'])    
+        return context
+        
+
+class msgtemplate(TemplateView):
+    template_name = 'msg.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['msg'] = 'Object deleted '
+        return context
+        
+class update(View):
+    def get(self, request, *args, **kwargs):
+        return HttpResponse("UPDATED SUCCESSFULLY")
+
+
 
 
 

@@ -6,18 +6,19 @@
     <title>Document</title>
 </head>
 <body>
-    {%for student in students%}
+    <!-- {%for student in students%} -->
     <br>
-    Name={{student.name}}  <br>
+    <!-- Name={{student.name}}  <br>
     Age={{student.age}} <br>
     Course={{student.course}} <br>
-    {%endfor%}
+    {%endfor%} -->
     <hr>
     {%for student in new%}
   
-    Name={{student.name}}  <br>
+    <!-- Name={{student.name}}  <br>
     Age={{student.age}} <br>
-    Course={{student.course}} <br>
+    Course={{student.course}} <br> -->
+    <li><a href="{%url 'displaymodel' student.id%}">{{student.name}}</a></li>
     {%endfor%}
 
     <br>
