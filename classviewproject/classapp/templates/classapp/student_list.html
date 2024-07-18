@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {%for student in students%}
+    <br>
+    Name={{student.name}}  <br>
+    Age={{student.age}} <br>
+    Course={{student.course}} <br>
+    {%endfor%}
+    <hr>
+    {%for student in new%}
+  
+    Name={{student.name}}  <br>
+    Age={{student.age}} <br>
+    Course={{student.course}} <br>
+    {%endfor%}
+
+    <br>
+    
+   
+</body>
+</html>
