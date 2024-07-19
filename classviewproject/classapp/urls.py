@@ -21,7 +21,7 @@ urlpatterns = [
     path('end/<int:id>/',views.TemplateEndView.as_view(),name='end'),
     path('update/<int:pk>/',views.studentupdateview.as_view(),name='update'),
     path('update_success/',views.update.as_view(),name='update_success'),
-    path('delete/<int:pk>',views.studentdeleteview.as_view(),name='delete'),
+    path('delete/<int:pk>/',views.studentdeleteview.as_view(),name='delete'),
     path('msg/',views.msgtemplate.as_view(),name='msg'),
 
     

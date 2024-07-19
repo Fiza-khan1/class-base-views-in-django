@@ -76,8 +76,7 @@ class StudentDetailView(DetailView):
 
 class ViewContactForm(FormView):
     template_name='classapp/formview.html'
-    form_class=contactform
-    
+    form_class=contactform  
     def form_valid(self, form: Any) -> HttpResponse:
         print(form)
         return super().form_valid(form)
@@ -106,7 +105,9 @@ class studentupdateview(UpdateView):
 
 class studentdeleteview(DeleteView):
     model=Student
-    success_url='/msg/'
+    success_url = '/home/'
+
+    
 class TemplateEndView(TemplateView):
     template_name = 'msg.html'
     def get_context_data(self, **kwargs):
@@ -126,10 +127,6 @@ class msgtemplate(TemplateView):
 class update(View):
     def get(self, request, *args, **kwargs):
         return HttpResponse("UPDATED SUCCESSFULLY")
-
-
-
-
 
 
 
